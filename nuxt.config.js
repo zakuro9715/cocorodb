@@ -9,7 +9,10 @@ module.exports = {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: 'Nuxt.js project' },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' },
+    ],
     script: [{ src: '/ncmb.min.js' }],
   },
   env: {
@@ -18,7 +21,10 @@ module.exports = {
       clientKey: process.env.NCMB_APPLICATION_KEY,
     },
   },
-  plugins: [{ src: '~plugins/ncmb', ssr: false }],
+  plugins: [{ src: '~plugins/ncmb', ssr: false }, '~/plugins/vuetify.js'],
+  css: ['~/assets/styles/app.styl'],
+  vendor: ['~/plugins/vuetify.js'],
+  extractCSS: true,
   build: {
     /* Run ESLint on save */
     extend(config, { isDev, isClient }) {
