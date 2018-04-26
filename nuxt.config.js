@@ -1,7 +1,5 @@
 module.exports = {
-  /*
-  ** Headers of the page
-  */
+  /* Headers of the page */
   head: {
     title: 'cocorodb',
     meta: [
@@ -11,19 +9,10 @@ module.exports = {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+    ],
   },
-  /*
-  ** Customize the progress bar color
-  */
-  loading: { color: '#3B8070' },
-  /*
-  ** Build configuration
-  */
   build: {
-    /*
-    ** Run ESLint on save
-    */
+    /* Run ESLint on save */
     extend (config, { isDev, isClient }) {
       if (isDev && isClient) {
         config.module.rules.push({
@@ -33,6 +22,6 @@ module.exports = {
           exclude: /(node_modules)/
         })
       }
-    }
-  }
+    },
+  },
 }
