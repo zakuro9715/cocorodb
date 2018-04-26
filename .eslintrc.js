@@ -16,6 +16,8 @@ module.exports = {
     'vue',
   ],
   rules: {
+    "no-console": 1,
+    "no-debugger": 1,
     "prettier/prettier": [
       "error",
       {

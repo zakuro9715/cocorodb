@@ -1,4 +1,6 @@
 module.exports = {
+  ssr: false,
+
   /* Headers of the page */
   head: {
     title: 'cocorodb',
@@ -8,6 +10,7 @@ module.exports = {
       { hid: 'description', name: 'description', content: 'Nuxt.js project' },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    script: [{ src: '/ncmb.min.js' }],
   },
   env: {
     ncmb: {
@@ -15,6 +18,7 @@ module.exports = {
       clientKey: process.env.NCMB_APPLICATION_KEY,
     },
   },
+  plugins: [{ src: '~plugins/ncmb', ssr: false }],
   build: {
     /* Run ESLint on save */
     extend(config, { isDev, isClient }) {
