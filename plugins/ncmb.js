@@ -1,6 +1,5 @@
-/* eslint-disable */
+import NCMB from 'ncmb'
 
-export default ({env}, inject) => {
-  console.log(new NCMB(env.ncmb.applicationKey, env.ncmb.clientKey))
+export default ({ env }, inject) => {
   inject('ncmb', new NCMB(env.ncmb.applicationKey, env.ncmb.clientKey))
 }
