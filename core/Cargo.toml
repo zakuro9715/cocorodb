@@ -1,0 +1,9 @@
+[package]
+name = "cocorodb"
+version = "0.1.0"
+authors = ["zakuro <z@kuro.red>"]
+
+[lib]
+create-type= ["cdylib"]
+
+[dependencies]
