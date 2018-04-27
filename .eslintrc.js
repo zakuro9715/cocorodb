@@ -8,9 +8,8 @@ module.exports = {
     parser: 'babel-eslint',
   },
   extends: [
-    'eslint:recommended',
     'plugin:vue/strongly-recommended',
-    'plugin:prettier/recommended',
+    'zakuro'
   ],
   plugins: [
     'vue',
@@ -18,15 +17,5 @@ module.exports = {
   rules: {
     "no-console": 1,
     "no-debugger": 1,
-    "prettier/prettier": [
-      "error",
-      {
-        "printWidth": 120,
-        "singleQuote": true,
-        "trailingComma": "es5",
-        "arrowParens": "always",
-        "semi": false,
-      },
-    ],
   },
 }
