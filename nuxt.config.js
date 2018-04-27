@@ -1,7 +1,5 @@
 module.exports = {
   ssr: false,
-
-  /* Headers of the page */
   head: {
     title: 'cocorodb',
     meta: [
@@ -11,7 +9,8 @@ module.exports = {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' },
+      // prettier-ignore
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons'},
     ],
     script: [{ src: '/ncmb.min.js' }],
   },
@@ -21,12 +20,16 @@ module.exports = {
       clientKey: process.env.NCMB_APPLICATION_KEY,
     },
   },
-  plugins: [{ src: '~plugins/ncmb', ssr: false }, '~/plugins/vuetify.js'],
-  css: ['~/assets/styles/app.styl'],
+  plugins: [
+    '~plugins/vuetify.js',
+    { src: '~plugins/ncmb', ssr: false },
+    { src: '~plugins/browserDebug', ssr: false },
+  ],
+  css: ['~assets/styles/app.styl'],
   vendor: ['~/plugins/vuetify.js'],
   extractCSS: true,
   build: {
-    /* Run ESLint on save */
+    // Run ESLint on save
     extend(config, { isDev, isClient }) {
       if (isDev && isClient) {
         config.module.rules.push({
