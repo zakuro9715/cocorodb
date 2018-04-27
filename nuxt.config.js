@@ -1,5 +1,4 @@
 module.exports = {
-  ssr: false,
   head: {
     title: 'cocorodb',
     meta: [
@@ -21,9 +20,8 @@ module.exports = {
     },
   },
   plugins: [
-    '~plugins/vuetify.js',
+    { src: '~plugins/vuetify.js' },
     { src: '~plugins/ncmb', ssr: false },
-    { src: '~plugins/browserDebug', ssr: false },
   ],
   css: ['~assets/styles/app.styl'],
   vendor: ['~/plugins/vuetify.js'],
