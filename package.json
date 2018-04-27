@@ -1,7 +1,7 @@
 {
   "name": "cocorodb",
-  "version": "1.0.0",
-  "description": "Nuxt.js project",
+  "version": "0.0.0",
+  "description": "cocorodb main app (alpha)",
   "author": "zakuro <z@kuro.red>",
   "private": true,
   "scripts": {
