@@ -21,6 +21,7 @@ module.exports = {
   },
   plugins: [
     { src: '~plugins/vuetify.js' },
+    { src: '~plugins/elements' },
     { src: '~plugins/ncmb', ssr: false },
   ],
   css: ['~assets/styles/app.styl'],
