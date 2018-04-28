@@ -17,5 +17,6 @@ module.exports = {
   rules: {
     "no-console": 1,
     "no-debugger": 1,
+    "import/extensions": 0,
   },
 }
