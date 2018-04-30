@@ -17,8 +17,11 @@ module.exports = {
   env: {
     ncmb: {
       applicationKey: process.env.NCMB_APPLICATION_KEY,
-      clientKey: process.env.NCMB_APPLICATION_KEY,
+      clientKey: process.env.NCMB_CLIENT_KEY,
     },
+  },
+  router: {
+    middleware: ['ncmb'],
   },
   plugins: [
     { src: '~plugins/vuetify.js' },
