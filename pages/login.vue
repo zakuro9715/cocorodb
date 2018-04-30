@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>login</h1>
+    <v-btn @click="navigateToRegistration">Register</v-btn>
     <v-btn @click="loginAsAnonymous">Anonymous Login</v-btn>
   </div>
 </template>
@@ -15,6 +16,9 @@ export default {
       this.$store.dispatch('auth/loginAsAnonymous').then(() => {
         this.$router.push('/')
       })
+    },
+    navigateToRegistration() {
+      this.$router.push('/registration')
     }
   },
 }
