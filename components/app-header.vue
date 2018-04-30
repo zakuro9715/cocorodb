@@ -18,8 +18,9 @@ export default {
     ...mapGetters({ loggedIn: 'auth/loggedIn' }),
   },
   methods: {
-    logout() {
-      this.$store.dispatch('auth/logout')
+    async logout() {
+      await this.$store.dispatch('auth/logout')
+      this.$router.push('/login')
     },
   },
 }
