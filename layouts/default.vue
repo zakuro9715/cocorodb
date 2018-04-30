@@ -14,5 +14,6 @@ import AppHeader from '~/components/app-header.vue'
 
 export default {
   components: { AppHeader },
+  middleware: 'loggedIn',
 }
 </script>
