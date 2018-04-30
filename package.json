@@ -27,7 +27,8 @@
     "ncmb": "^2.2.1",
     "nuxt": "^1.0.0",
     "vue": "^2.5.16",
-    "vuetify": "^1.0.17"
+    "vuetify": "^1.0.17",
+    "vuex": "^3.0.1"
   },
   "devDependencies": {
     "@storybook/vue": "^3.4.3",
