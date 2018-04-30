@@ -16,4 +16,8 @@ export const actions = {
     commit('SET_CURRENT_USER', u)
     return u
   },
+  async loginAsAnonymous({ rootState, dispatch }) {
+    await rootState.ncmb.User.loginAsAnonymous()
+    return await dispatch('fetchCurrentUser')
+  },
 }

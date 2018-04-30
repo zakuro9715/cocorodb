@@ -3,6 +3,7 @@
     <h1 class="title">
       cocorodb
     </h1>
+    <nuxt-link to="login">login</nuxt-link>
   </div>
 </template>
 
