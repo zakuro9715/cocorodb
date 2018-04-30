@@ -3,12 +3,28 @@
     <h1 class="title">
       cocorodb
     </h1>
-    <nuxt-link to="login">login</nuxt-link>
+    <nuxt-link
+      to="login"
+      v-if="!loggedIn">login</nuxt-link>
+    <v-btn
+      v-if="loggedIn"
+      @click="logout">logout</v-btn>
   </div>
 </template>
 
 <script>
-export default {}
+import { mapGetters } from 'vuex'
+
+export default {
+  computed: {
+    ...mapGetters({ loggedIn: 'auth/loggedIn' }),
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch('auth/logout')
+    },
+  },
+}
 </script>
 
 <style>
