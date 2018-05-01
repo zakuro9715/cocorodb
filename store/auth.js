@@ -1,3 +1,5 @@
+import ncmb from '~/plugins/ncmb'
+
 export const state = () => ({
   currentUser: null,
 })
@@ -15,17 +17,17 @@ export const getters = {
 }
 
 export const actions = {
-  async fetchCurrentUser({ rootState, commit }) {
-    const u = rootState.ncmb.User.getCurrentUser()
+  async fetchCurrentUser({ commit }) {
+    const u = ncmb.User.getCurrentUser()
     commit('SET_CURRENT_USER', u)
     return u
   },
-  async logout({ rootState, commit }) {
-    await rootState.ncmb.User.logout()
+  async logout({ commit }) {
+    await ncmb.User.logout()
     commit('SET_CURRENT_USER', null)
   },
-  async loginAsAnonymous({ rootState, dispatch }) {
-    await rootState.ncmb.User.loginAsAnonymous()
+  async loginAsAnonymous({ dispatch }) {
+    await ncmb.User.loginAsAnonymous()
     return await dispatch('fetchCurrentUser')
   },
 }

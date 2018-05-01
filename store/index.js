@@ -1,9 +1,3 @@
-export const state = () => ({
-  ncmb: null,
-})
+export const state = () => ({})
 
-export const mutations = {
-  SET_NCMB(state, ncmb) {
-    state.ncmb = ncmb
-  },
-}
+export const mutations = {}

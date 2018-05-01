@@ -1,4 +1,5 @@
 /* global NCMB */
-export default ({ env }, inject) => {
-  inject('ncmb', new NCMB(env.ncmb.applicationKey, env.ncmb.clientKey))
-}
+export default new NCMB(
+  process.env.ncmb.applicationKey,
+  process.env.ncmb.clientKey
+)

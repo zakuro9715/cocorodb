@@ -21,13 +21,9 @@ module.exports = {
     },
   },
   router: {
-    middleware: ['ncmb', 'currentUser'],
+    middleware: ['currentUser'],
   },
-  plugins: [
-    { src: '~plugins/vuetify.js' },
-    { src: '~plugins/elements' },
-    { src: '~plugins/ncmb', ssr: false },
-  ],
+  plugins: ['~plugins/vuetify.js', '~plugins/elements'],
   css: ['~assets/styles/app.styl'],
   vendor: ['~/plugins/vuetify.js'],
   extractCSS: true,
