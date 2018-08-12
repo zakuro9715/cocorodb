@@ -1,6 +1,13 @@
 import ncmb from '~/plugins/ncmb'
 
-const UserKind = ncmb.DataStore('UserKind')
+/*
+ * RecordKind
+ * fields:
+ *   - name
+ *   - range: [min, max] or falsy value (not range)
+ */
+
+const RecordKind = ncmb.DataStore('RecordKind')
 
 export const state = () => ({
   kinds: [],
@@ -26,17 +33,17 @@ export const actions = {
       'objectId',
       rootState.auth.currentUser.objectId
     )
-    const records = await UserKind.inQuery('user', isCurrentUser).fetchAll()
-    const kinds = records.map((v) => v.kind)
+    const kinds = await RecordKind.inQuery('user', isCurrentUser).fetchAll()
     commit('SET_KINDS', kinds)
     return kinds
   },
-  async createKind({ rootState, commit }, kind) {
-    const userKind = await new UserKind({
+  async createKind({ rootState, commit }, { name, range }) {
+    const kind = await new RecordKind({
       user: rootState.auth.currentUser,
-      kind,
+      name,
+      range,
     }).save()
-    commit('ADD_KIND', userKind.kind)
-    return userKind.kind
+    commit('ADD_KIND', kind)
+    return kind
   },
 }
