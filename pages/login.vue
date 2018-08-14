@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h1>login</h1>
-    <v-btn @click="navigateToRegistration">Register</v-btn>
-    <v-btn @click="loginAsAnonymous">Anonymous Login</v-btn>
+    <h1>{{ $t('login') }}</h1>
+    <v-btn @click="navigateToRegistration">{{ $t('register') }} </v-btn>
+    <v-btn @click="loginAsAnonymous">{{ $t('anonymousLogin') }}</v-btn>
   </div>
 </template>
 

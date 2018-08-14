@@ -1,6 +1,11 @@
+<i18n>
+ja:
+  title: 新規データセット
+</i18n>
+
 <template>
   <div>
-    <h1>New data kind</h1>
+    <h1>{{ $t('title') }}</h1>
     <kind-form @submit="submit" />
   </div>
 </template>

@@ -23,7 +23,7 @@ module.exports = {
   router: {
     middleware: ['currentUser'],
   },
-  plugins: ['~plugins/vuetify.js', '~plugins/elements'],
+  plugins: ['~plugins/i18n', '~plugins/vuetify.js', '~plugins/elements'],
   css: ['~assets/styles/app.styl'],
   vendor: ['~/plugins/vuetify.js'],
   extractCSS: true,
@@ -38,6 +38,11 @@ module.exports = {
           exclude: /(node_modules)/,
         })
       }
+
+      config.module.rules.push({
+        test: /\.(yml|yaml)$/,
+        use: [{ loader: 'json-loader' }, { loader: 'yaml-loader' }],
+      })
 
       const vueLoader = config.module.rules.find(
         (r) => r.loader === 'vue-loader'

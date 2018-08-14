@@ -1,12 +1,17 @@
+<i18n>
+ja:
+  name: データ名
+  isRange: 範囲データ
+</i18n>
 <template>
   <v-form v-model="valid">
     <v-text-field
-      label="Name"
+      :label="$t('name')"
       v-model="name"
       :rules="nameRules"
       required />
     <v-checkbox
-      label="is range data"
+      :label="$t('isRange')"
       v-model="isRange" />
     <cocoro-range-slider
       v-show="isRange"
@@ -14,7 +19,7 @@
 
     <v-btn
       :disabled="!valid"
-      @click="submit">Submit</v-btn>
+      @click="submit">{{ $t('submit') }}</v-btn>
   </v-form>
 </template>
 
