@@ -38,6 +38,13 @@ module.exports = {
           exclude: /(node_modules)/,
         })
       }
+
+      const vueLoader = config.module.rules.find(
+        (r) => r.loader === 'vue-loader'
+      )
+      vueLoader.options.preLoaders = vueLoader.options.preLoaders || {}
+      vueLoader.options.preLoaders.i18n = 'yaml-loader'
+      vueLoader.options.loaders.i18n = '@kazupon/vue-i18n-loader'
     },
   },
 }
