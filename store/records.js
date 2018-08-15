@@ -1,4 +1,5 @@
 import ncmb from '~/plugins/ncmb'
+import Vue from 'vue'
 
 /*
  * RecordKind
@@ -10,19 +11,13 @@ import ncmb from '~/plugins/ncmb'
 const RecordKind = ncmb.DataStore('RecordKind')
 
 export const state = () => ({
-  kinds: [],
+  kinds: {},
   selectedKind: null,
 })
 
 export const mutations = {
-  SET_KINDS(state, kinds) {
-    state.kinds = kinds
-  },
-  ADD_KIND(state, kind) {
-    state.kinds.push(kind)
-  },
-  SELECT_KIND(state, kind) {
-    state.selectedKind = kind
+  SET_KIND(state, kind) {
+    Vue.set(state.kinds, kind.objectId, kind)
   },
 }
 
@@ -38,7 +33,7 @@ export const actions = {
       rootState.auth.currentUser.objectId
     )
     const kinds = await RecordKind.inQuery('user', isCurrentUser).fetchAll()
-    commit('SET_KINDS', kinds)
+    kinds.forEach((k) => commit('SET_KIND', k))
     return kinds
   },
   async fetchKind({ commit }, id) {
@@ -46,7 +41,7 @@ export const actions = {
     if (!kind) {
       throw new Error({ statusCode: 404 })
     }
-    commit('SELECT_KIND', kind)
+    commit('SET_KIND', kind)
     return kind
   },
   async createKind({ rootState, commit }, { name, range }) {
@@ -55,7 +50,7 @@ export const actions = {
       name,
       range,
     }).save()
-    commit('ADD_KIND', kind)
+    commit('SET_KIND', kind)
     return kind
   },
 }
