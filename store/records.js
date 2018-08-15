@@ -45,11 +45,13 @@ export const actions = {
     return kind
   },
   async createKind({ rootState, commit }, { name, range }) {
-    const kind = await new RecordKind({
-      user: rootState.auth.currentUser,
-      name,
-      range,
-    }).save()
+    const user = rootState.auth.currentUser
+    const kind = await new RecordKind({ name, range, user }).save()
+    commit('SET_KIND', kind)
+    return kind
+  },
+  async updateKind({ commit }, attrs) {
+    const kind = await new RecordKind(attrs).update()
     commit('SET_KIND', kind)
     return kind
   },
