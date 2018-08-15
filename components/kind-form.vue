@@ -29,19 +29,21 @@ export default {
   props: {
     kind: {
       type: Object,
-      default: null,
+      default: () => {},
     },
   },
   data: (vm) => ({
     valid: false,
     isRange: (vm.kind && !!vm.kind.range) || false,
     nameRules: [(v) => !!v || 'Name is required'],
-    name: (vm.kind && vm.kind.name) || '',
-    range: (vm.kind && vm.kind.range) || [0, 100],
+    objectId: vm.kind.objectId || '',
+    name: vm.kind.name || '',
+    range: vm.kind.range || [0, 100],
   }),
   methods: {
     submit() {
       this.$emit('submit', {
+        objectId: this.objectId,
         name: this.name,
         range: this.isRange && this.range,
       })
