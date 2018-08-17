@@ -5,21 +5,30 @@ ja:
 </i18n>
 <template>
   <v-form v-model="valid">
-    <v-text-field
-      :label="$t('name')"
-      v-model="name"
-      :rules="nameRules"
-      required />
-    <v-checkbox
-      :label="$t('isRange')"
-      v-model="isRange" />
-    <cocoro-range-slider
-      v-show="isRange"
-      v-model="range" />
-
-    <v-btn
-      :disabled="!valid"
-      @click="submit">{{ $t('submit') }}</v-btn>
+    <v-flex>
+      <v-text-field
+        :label="$t('name')"
+        v-model="name"
+        :rules="nameRules"
+        required />
+    </v-flex>
+    <v-flex>
+      <v-btn-toggle v-model="kind">
+        <v-btn value="default">Default</v-btn>
+        <v-btn value="value">Value</v-btn>
+        <v-btn value="duration">Duration</v-btn>
+      </v-btn-toggle>
+    </v-flex>
+    <v-flex>
+      <cocoro-range-slider
+        v-show="kind === 'value'"
+        v-model="range" />
+    </v-flex>
+    <v-flex>
+      <v-btn
+        :disabled="!valid"
+        @click="submit">{{ $t('submit') }}</v-btn>
+    </v-flex>
   </v-form>
 </template>
 
@@ -27,24 +36,30 @@ ja:
 export default {
   name: 'KindForm',
   props: {
-    kind: {
+    model: {
       type: Object,
-      default: () => {},
+      default: () => ({}),
     },
   },
   data: (vm) => ({
+    kind: 'default',
     valid: false,
-    isRange: (vm.kind && !!vm.kind.range) || false,
     nameRules: [(v) => !!v || 'Name is required'],
-    objectId: vm.kind.objectId || '',
-    name: vm.kind.name || '',
-    range: vm.kind.range || [0, 100],
+    objectId: vm.model.objectId || '',
+    name: vm.model.name || '',
+    range: vm.model.range,
   }),
+  computed: {
+    isRange() {
+      return this.kind === 'default'
+    },
+  },
   methods: {
     submit() {
       this.$emit('submit', {
         objectId: this.objectId,
         name: this.name,
+        kind: this.kind,
         range: this.isRange && this.range,
       })
     },

@@ -7,7 +7,7 @@ ja:
   <div>
     <h1>{{ $t('title') }}</h1>
     <kind-form
-      :kind="kind"
+      :model="kind"
       @submit="submit" />
   </div>
 </template>
