@@ -1,5 +1,6 @@
 <template>
   <v-toolbar>
+    <v-toolbar-side-icon @click="toggleSidemenu"/>
     <h1 class="title">
       cocorodb
     </h1>
@@ -18,6 +19,9 @@ export default {
     ...mapGetters({ loggedIn: 'auth/loggedIn' }),
   },
   methods: {
+    toggleSidemenu() {
+      this.$emit('toggleSidemenu')
+    },
     async logout() {
       await this.$store.dispatch('auth/logout')
       this.$router.push('/login')
