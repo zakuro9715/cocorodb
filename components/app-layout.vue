@@ -1,22 +1,35 @@
 <template>
   <v-app>
     <v-content>
-      <app-header @toggleSidemenu="sidemenu =! sidemenu" />
+      <v-toolbar>
+        <v-toolbar-side-icon @click="sidemenu = !sidemenu"/>
+        <h1 class="title">
+          cocorodb
+        </h1>
+      </v-toolbar>
+
       <v-container>
         <slot />
       </v-container>
-      <app-sidemenu v-model="sidemenu" />
+
+      <v-navigation-drawer
+        v-model="sidemenu"
+        absolute
+        tempolary>
+        <v-list>
+          <v-list-tile-content>
+            <v-list-tile-title>
+              Menu
+            </v-list-tile-title>
+          </v-list-tile-content>
+        </v-list>
+      </v-navigation-drawer>
     </v-content>
   </v-app>
 </template>
 
 <script>
-import AppHeader from './app-header.vue'
-import AppSidemenu from './app-sidemenu.vue'
-
 export default {
-  components: { AppHeader, AppSidemenu },
-  middleware: 'loggedIn',
   data: () => ({
     sidemenu: false,
   }),
