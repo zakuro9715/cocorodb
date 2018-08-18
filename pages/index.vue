@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <app-layout>
     <h1>Top Page</h1>
     <v-form>
       <v-text-field
@@ -11,13 +11,15 @@
     <div
       :key="kind"
       v-for="kind in kinds">{{ kind }}</div>
-  </div>
+  </app-layout>
 </template>
 
 <script>
 import { mapActions, mapState } from 'vuex'
+import AppLayout from '~/components/app-layout.vue'
 
 export default {
+  components: { AppLayout },
   data() {
     return {
       kind: '',
