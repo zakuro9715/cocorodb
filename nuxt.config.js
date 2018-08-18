@@ -21,7 +21,7 @@ module.exports = {
     },
   },
   router: {
-    middleware: ['currentUser'],
+    middleware: ['auth'],
   },
   plugins: ['~plugins/i18n', '~plugins/vuetify.js', '~plugins/elements'],
   css: ['~assets/styles/app.styl'],

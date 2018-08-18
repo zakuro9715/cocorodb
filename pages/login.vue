@@ -11,6 +11,9 @@
 import { mapActions } from 'vuex'
 export default {
   layout: 'auth',
+  meta: {
+    anonymous: true,
+  },
   methods: {
     loginAsAnonymous() {
       this.$store.dispatch('auth/loginAsAnonymous').then(() => {
