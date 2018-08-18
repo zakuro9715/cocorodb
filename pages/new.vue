@@ -4,17 +4,24 @@ ja:
 </i18n>
 
 <template>
-  <div>
-    <h1>{{ $t('title') }}</h1>
+  <page-layout :title="$t('title')">
+    <template slot="toolbar">
+      <v-btn
+        @click="submit"
+        icon><v-icon>send</v-icon>
+      </v-btn>
+    </template>
+
     <kind-form @submit="submit" />
-  </div>
+  </page-layout>
 </template>
 
 <script>
 import KindForm from '~/components/kind-form.vue'
+import PageLayout from '~/components/page-layout.vue'
 
 export default {
-  components: { KindForm },
+  components: { KindForm, PageLayout },
   methods: {
     async submit(kind) {
       await this.$store.dispatch('records/createKind', kind)
