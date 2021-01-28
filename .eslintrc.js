@@ -1,23 +1,6 @@
 module.exports = {
   root: true,
-  env: {
-    browser: true,
-    node: true,
-  },
-  parserOptions: {
-    parser: 'babel-eslint',
-  },
   extends: [
-    'plugin:vue/strongly-recommended',
-    'zakuro'
+    'zakuro9715/vue/next'
   ],
-  plugins: [
-    'vue',
-  ],
-  rules: {
-    "no-console": 1,
-    "no-debugger": 1,
-    "import/extensions": 0,
-    "import/prefer-default-export": 0,
-  },
 }
