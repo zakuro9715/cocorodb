@@ -1,0 +1,7 @@
+{
+  "name": "cocorodb",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue"
+}
