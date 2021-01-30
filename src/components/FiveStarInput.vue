@@ -5,6 +5,8 @@
       :key="i"
       icon="star"
       :size="size"
+      :style="starsStyles[i]"
+      @click="clickStar(i)"
     />
   </ion-row>
 </template>
@@ -19,10 +21,35 @@ export default defineComponent({
     IonRow,
     IonIcon,
   },
+  model: {
+    prop: 'value',
+    event: 'input',
+  },
   props: {
     size: {
       type: String,
       default: () => '',
+    },
+    value: {
+      type: Number,
+      default: () => 0,
+    },
+  },
+  computed: {
+    starsStyles() {
+      return [0, 1, 2, 3, 4, 5]
+        .map((i) => i <= this.value ? { color: 'red' } : { })
+    },
+  },
+  methods: {
+    starStyles(i: number) {
+      if (i <= this.value) {
+        return { color: 'blue' }
+      }
+      return { }
+    },
+    clickStar(i: number) {
+      this.$emit('input', i == this.value ? 0 : i)
     },
   },
 })

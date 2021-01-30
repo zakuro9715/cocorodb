@@ -6,7 +6,7 @@
         class="ion-margin-bottom ion-text-center"
         style="--background: var(--ion-background-color)"
       />
-      <FiveStarInput size="large" />
+      <FiveStarInput size="large" :value="star" @input="star = $event" />
       <ion-row class="ion-justify-content-center ion-margin-top">
         <ion-button shape="round">
           <ion-icon
@@ -33,5 +33,8 @@ export default defineComponent({
     IonIcon,
     FiveStarInput,
   },
+  data: () => ({
+    star: 3,
+  }),
 })
 </script>
