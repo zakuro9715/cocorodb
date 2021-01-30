@@ -42,14 +42,8 @@ export default defineComponent({
     },
   },
   methods: {
-    starStyles(i: number) {
-      if (i <= this.value) {
-        return { color: 'blue' }
-      }
-      return { }
-    },
     clickStar(i: number) {
-      this.$emit('input', i == this.value ? 0 : i)
+      this.$emit('input', i === this.value ? 0 : i)
     },
   },
 })
