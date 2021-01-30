@@ -1,19 +1,19 @@
 <template>
-  <IonPage>
-    <IonContent :fullscreen="true">
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle size="large">
+  <ion-page>
+    <ion-content :fullscreen="true">
+      <ion-header>
+        <ion-toolbar>
+          <ion-title size="large">
             Blank
-          </IonTitle>
-        </IonToolbar>
-      </IonHeader>
+          </ion-title>
+        </ion-toolbar>
+      </ion-header>
 
       <div id="container">
         content
       </div>
-    </IonContent>
-  </IonPage>
+    </ion-content>
+  </ion-page>
 </template>
 
 <script lang="ts">
