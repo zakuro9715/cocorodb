@@ -24,8 +24,8 @@ import '@ionic/vue/css/display.css'
 import './theme/variables.css'
 
 import { addIcons } from 'ionicons'
-import { settings } from 'ionicons/icons'
-addIcons({ settings })
+import { settings, checkmark, checkmarkCircle } from 'ionicons/icons'
+addIcons({ settings, checkmark, checkmarkCircle })
 
 const app = createApp(App)
   .use(IonicVue)

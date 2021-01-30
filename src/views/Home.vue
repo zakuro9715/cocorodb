@@ -15,7 +15,7 @@
       </ion-header>
 
       <div id="container">
-        content
+        <CocoroMainBox />
       </div>
     </ion-content>
   </ion-page>
@@ -24,6 +24,7 @@
 <script lang="ts">
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButtons, IonButton, IonIcon } from '@ionic/vue'
 import { defineComponent } from 'vue'
+import CocoroMainBox from '@/components/CocoroMainBox.vue'
 
 export default defineComponent({
   name: 'Home',
@@ -36,6 +37,7 @@ export default defineComponent({
     IonButtons,
     IonButton,
     IonIcon,
+    CocoroMainBox,
   },
 })
 </script>
