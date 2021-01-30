@@ -4,7 +4,7 @@
       <ion-header>
         <ion-toolbar>
           <ion-title size="large">
-            Blank
+            {{ title }}
           </ion-title>
           <ion-buttons slot="end">
             <ion-button @click="$router.push({ name: 'settings' })">
@@ -38,6 +38,12 @@ export default defineComponent({
     IonButton,
     IonIcon,
     CocoroMainBox,
+  },
+  computed: {
+    title() {
+      const d = new Date()
+      return `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDay()}日`
+    }
   },
 })
 </script>
