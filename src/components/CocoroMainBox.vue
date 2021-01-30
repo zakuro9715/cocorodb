@@ -6,7 +6,8 @@
         class="ion-margin-bottom ion-text-center"
         style="--background: var(--ion-background-color)"
       />
-      <ion-row class="ion-justify-content-center">
+      <FiveStarInput size="large" />
+      <ion-row class="ion-justify-content-center ion-margin-top">
         <ion-button shape="round">
           <ion-icon
             slot="icon-only"
@@ -21,6 +22,7 @@
 <script lang="ts">
 import { IonCard, IonCardContent, IonButton, IonIcon } from '@ionic/vue'
 import { defineComponent } from 'vue'
+import FiveStarInput from './FiveStarInput.vue'
 
 export default defineComponent({
   name: 'CocoroMainBox',
@@ -29,6 +31,7 @@ export default defineComponent({
     IonCardContent,
     IonButton,
     IonIcon,
+    FiveStarInput,
   },
 })
 </script>
