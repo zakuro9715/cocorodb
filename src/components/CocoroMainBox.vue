@@ -6,9 +6,12 @@
         class="ion-margin-bottom ion-text-center"
         style="--background: var(--ion-background-color)"
       />
-        <ion-row class="ion-justify-content-center">
+      <ion-row class="ion-justify-content-center">
         <ion-button shape="round">
-          <ion-icon slot="icon-only" icon="checkmark" />
+          <ion-icon
+            slot="icon-only"
+            icon="checkmark"
+          />
         </ion-button>
       </ion-row>
     </ion-card-content>
