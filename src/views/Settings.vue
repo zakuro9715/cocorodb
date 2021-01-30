@@ -4,13 +4,8 @@
       <ion-header>
         <ion-toolbar>
           <ion-title size="large">
-            Blank
+            設定
           </ion-title>
-          <ion-buttons slot="end">
-            <ion-button @click="$router.push({ name: 'settings' })">
-              <ion-icon icon="settings" />
-            </ion-button>
-          </ion-buttons>
         </ion-toolbar>
       </ion-header>
 
@@ -26,7 +21,7 @@ import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButtons, IonBu
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'Home',
+  name: 'Settings',
   components: {
     IonContent,
     IonHeader,
