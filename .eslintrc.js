@@ -4,8 +4,9 @@ module.exports = {
     '@zakuro9715/vue-typescript/next',
   ],
   rules: {
-    'vue/component-name-in-template-casting': ['error', 'PascalCase', {
-      ignores: [/^Ion/],
+    'vue/component-name-in-template-casing': ['error', 'PascalCase', {
+      ignores: ['/^ion/'],
     }],
-  }
+    'vue/no-deprecated-slot-attribute': 'off',
+  },
 }
