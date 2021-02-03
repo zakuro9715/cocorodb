@@ -10,15 +10,24 @@
       </ion-header>
 
       <div id="container">
-        content
+        <ion-button @click="clearDB">
+          データ削除
+        </ion-button>
       </div>
     </ion-content>
   </ion-page>
 </template>
 
 <script lang="ts">
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/vue'
+import {
+  IonContent,
+  IonHeader,
+  IonPage,
+  IonTitle,
+  IonToolbar,
+} from '@ionic/vue'
 import { defineComponent } from 'vue'
+import * as db from '@/db'
 
 export default defineComponent({
   name: 'Settings',
@@ -28,6 +37,13 @@ export default defineComponent({
     IonPage,
     IonTitle,
     IonToolbar,
+  },
+  methods: {
+    async clearDB(): Promise<void> {
+      if (confirm('全データ削除を実行しますか')) {
+        await db.clear()
+      }
+    },
   },
 })
 </script>

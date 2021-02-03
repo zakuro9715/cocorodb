@@ -1,15 +1,15 @@
 import Dexie from 'dexie'
 
-interface Item {
+export interface Item {
   id?: number
   name: string
 }
 
-interface MainRecordValue {
+export interface MainRecordValue {
   memo: string
   star: number
 }
-type RecordValue = number | MainRecordValue
+export type RecordValue = number | MainRecordValue
 
 interface Record {
   id?: number
