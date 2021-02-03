@@ -1,10 +1,10 @@
 import { db } from './db'
 
 const MAIN_ITEM_ID = 43708623
-const MAIN_ITEM_NAME = 'main'
+const MAIN_ITEM_DEAFULT_NAME = 'main'
 
 export async function createMainItem(): Item {
-  return await db.table('items').put({ id: MAIN_ITEM_ID, name: MAIN_ITEM_NAME })
+  return await db.table('items').put({ id: MAIN_ITEM_ID, name: MAIN_ITEM_DEAFULT_NAME })
 }
 
 export async function getMainItem(): Item  {
