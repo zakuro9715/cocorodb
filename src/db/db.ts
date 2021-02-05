@@ -29,8 +29,8 @@ export class Database extends Dexie {
       records: '++id, value, timestamp, itemId',
     })
 
-    this.items = this.table('items')
-    this.records = this.table('records')
+    this.items = this.table<Item, number>('items')
+    this.records = this.table<Record, number>('records')
   }
 }
 
