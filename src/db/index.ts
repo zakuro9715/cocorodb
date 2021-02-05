@@ -6,6 +6,10 @@ export { Item } from './db'
 const MAIN_ITEM_ID = 43708623
 const MAIN_ITEM_DEAFULT_NAME = 'main'
 
+export async function getAllItems(): Promise<Item[]> {
+  return await db.items.toArray()
+}
+
 export async function createMainItem(): Promise<number> {
   return await db.items.put({ id: MAIN_ITEM_ID, name: MAIN_ITEM_DEAFULT_NAME })
 }
