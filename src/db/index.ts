@@ -17,8 +17,12 @@ export async function createMainItem(): Promise<number> {
   return await putItem({ id: MAIN_ITEM_ID, name: MAIN_ITEM_DEAFULT_NAME })
 }
 
+export async function getItem(id: number): Promise<Item | undefined> {
+  return db.items.get(id)
+}
+
 export async function getMainItem(): Promise<Item | undefined>  {
-  return await db.items.get({ id: MAIN_ITEM_ID })
+  return getItem(MAIN_ITEM_ID)
 }
 
 export async function prepare(): Promise<void> {
