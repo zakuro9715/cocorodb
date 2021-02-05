@@ -9,8 +9,12 @@ export async function getAllItems(): Promise<Item[]> {
   return await db.items.toArray()
 }
 
+export async function putItem(item: Item): Promise<number> {
+  return await db.items.put(item)
+}
+
 export async function createMainItem(): Promise<number> {
-  return await db.items.put({ id: MAIN_ITEM_ID, name: MAIN_ITEM_DEAFULT_NAME })
+  return await putItem({ id: MAIN_ITEM_ID, name: MAIN_ITEM_DEAFULT_NAME })
 }
 
 export async function getMainItem(): Promise<Item | undefined>  {
