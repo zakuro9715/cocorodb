@@ -1,3 +1,4 @@
-default: npm.script
+default: serve
 tasks:
-  npm.script: npm run
+  serve: npm run serve
+  run: npm run
