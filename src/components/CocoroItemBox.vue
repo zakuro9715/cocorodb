@@ -1,6 +1,7 @@
 <template>
   <ion-card>
     <ion-card-content>
+      {{ item.name }}
       <ion-input
         placeholder="一言メモ"
         class="ion-margin-bottom ion-text-center"
@@ -25,11 +26,15 @@
 
 <script lang="ts">
 import { IonCard, IonCardContent, IonButton, IonIcon } from '@ionic/vue'
-import { defineComponent } from 'vue'
+import { defineComponent, PropType } from 'vue'
+import { Item } from '@/db'
 import FiveStarInput from './FiveStarInput.vue'
 
 export default defineComponent({
   name: 'CocoroMainBox',
+  props: {
+    item: Object as PropType<Item>
+  },
   components: {
     IonCard,
     IonCardContent,
