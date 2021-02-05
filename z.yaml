@@ -2,3 +2,4 @@ default: serve
 tasks:
   serve: npm run serve
   run: npm run
+  lint: npm run lint
