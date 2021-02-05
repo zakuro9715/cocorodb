@@ -2,7 +2,7 @@ import { db, Item } from './db'
 
 export { Item } from './db'
 
-const MAIN_ITEM_ID = 43708623
+const MAIN_ITEM_ID = 0
 const MAIN_ITEM_DEAFULT_NAME = 'main'
 
 export async function getAllItems(): Promise<Item[]> {
