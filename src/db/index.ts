@@ -1,3 +1,4 @@
+import { unwrap } from '@/utils'
 import { db, Item } from './db'
 
 const MAIN_ITEM_ID = 43708623
@@ -8,7 +9,7 @@ export async function createMainItem(): Promise<number> {
 }
 
 export async function getMainItem(): Promise<Item>  {
-  return await db.items.get({ id: MAIN_ITEM_ID }).then((v) => v!)
+  return await db.items.get({ id: MAIN_ITEM_ID }).then((v) => unwrap(v))
 }
 
 export async function prepare(): Promise<void> {
