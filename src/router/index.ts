@@ -12,6 +12,10 @@ const routes: Array<RouteRecordRaw> = [
         path: '/',
         component: import('@/views/HomeTab.vue'),
       },
+      {
+        path: '/records',
+        component: import('@/views/RecordsTab.vue'),
+      },
     ],
   },
   {
