@@ -22,7 +22,7 @@ export const items = {
     return await items.put({
       id: items.mainId,
       name: items.mainName,
-      valueKind: 'integer',
+      valueKind: 'number',
       priority: items.mainPriority,
       min: 0,
       max: 100,

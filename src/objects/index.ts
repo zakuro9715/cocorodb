@@ -1,4 +1,4 @@
-export type RecordValueKind = 'integer' | 'decimal'
+export type RecordValueKind = 'number'
 
 export interface Item {
   id?: number
