@@ -8,16 +8,12 @@ export interface Item {
   max: number
 }
 
-export interface RecordValue {
+export interface Record {
+  id?: number
+  itemId: number
   text?: string
   value: number
   min: number
   max: number
-}
-
-export interface Record {
-  id?: number
-  itemId: number
-  value: RecordValue
-  timestamp: Date
+  createdAt: Date
 }
