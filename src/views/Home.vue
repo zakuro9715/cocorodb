@@ -25,6 +25,7 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButtons, IonButton, IonIcon } from '@ionic/vue'
 import { defineComponent } from 'vue'
 import * as db from '@/db'
+import { Item } from '@/objects'
 import CocoroItemList from '@/components/CocoroItemList.vue'
 
 export default defineComponent({
@@ -41,7 +42,7 @@ export default defineComponent({
     CocoroItemList,
   },
   data: () => ({
-    items: Array<db.Item>(),
+    items: Array<Item>(),
   }),
   computed: {
     title() {

@@ -22,7 +22,7 @@
 <script lang="ts">
 import { IonCard, IonCardContent, IonButton, IonIcon } from '@ionic/vue'
 import { defineComponent, PropType } from 'vue'
-import { Item } from '@/db'
+import { Item } from '@/objects'
 
 export default defineComponent({
   name: 'CocoroItemBox',

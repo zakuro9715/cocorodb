@@ -1,14 +1,5 @@
 import Dexie from 'dexie'
-
-export type RecordValueKind = 'integer' | 'decimal'
-
-export interface Item {
-  id?: number
-  name: string
-  valueKind: RecordValueKind
-  min: number
-  max: number
-}
+import { Item, Record } from '@/objects'
 
 export const items = {
   mainId: 0,
@@ -34,20 +25,6 @@ export const items = {
       max: 100,
     })
   },
-}
-
-export interface RecordValue {
-  text?: string
-  value: number
-  min: number
-  max: number
-}
-
-interface Record {
-  id?: number
-  itemId: number
-  value: RecordValue
-  timestamp: Date
 }
 
 export class Database extends Dexie {
