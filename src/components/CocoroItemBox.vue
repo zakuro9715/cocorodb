@@ -31,16 +31,19 @@ import { Item } from '@/db'
 import FiveStarInput from './FiveStarInput.vue'
 
 export default defineComponent({
-  name: 'CocoroMainBox',
-  props: {
-    item: Object as PropType<Item>
-  },
+  name: 'CocoroItemBox',
   components: {
     IonCard,
     IonCardContent,
     IonButton,
     IonIcon,
     FiveStarInput,
+  },
+  props: {
+    item: {
+      type: Object as PropType<Item>,
+      required: true,
+    },
   },
   data: () => ({
     star: 3,

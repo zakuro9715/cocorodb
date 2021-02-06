@@ -1,8 +1,8 @@
 <template>
   <ion-list>
     <CocoroItemBox
-      :key="item.id"
       v-for="item in items"
+      :key="item.id"
       :item="item"
     />
   </ion-list>
@@ -16,12 +16,15 @@ import CocoroItemBox from './CocoroItemBox.vue'
 
 export default defineComponent({
   name: 'CocoroItemList',
-  props: {
-    items: Array as PropType<Item[]>
-  },
   components: {
     IonList,
     CocoroItemBox,
+  },
+  props: {
+    items: {
+      type: Array as PropType<Item[]>,
+      required: true,
+    },
   },
 })
 </script>
