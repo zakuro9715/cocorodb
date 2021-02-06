@@ -29,6 +29,7 @@ export default defineComponent({
     IonHeader,
     IonTitle,
     IonButtons,
+    IonButton,
     IonIcon,
   },
   computed: {
