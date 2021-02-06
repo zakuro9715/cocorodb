@@ -2,10 +2,16 @@
   <ion-page>
     <ion-tabs>
       <ion-tab-bar slot="bottom">
-        <ion-tab-button tab="records" href="/records">
+        <ion-tab-button
+          tab="records"
+          href="/records"
+        >
           <ion-label>履歴</ion-label>
         </ion-tab-button>
-        <ion-tab-button tab="home" href="/">
+        <ion-tab-button
+          tab="home"
+          href="/"
+        >
           <ion-label>ホーム</ion-label>
         </ion-tab-button>
       </ion-tab-bar>

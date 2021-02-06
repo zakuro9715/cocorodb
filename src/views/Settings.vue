@@ -40,6 +40,7 @@ export default defineComponent({
   },
   methods: {
     async clearDB(): Promise<void> {
+      // eslint-disable-next-line no-alert
       if (confirm('全データ削除を実行しますか')) {
         await db.clear()
       }

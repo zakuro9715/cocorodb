@@ -18,8 +18,8 @@
       </ion-col>
       <ion-col size="3">
         <ion-input
-          type="number"
           v-model="innerRecord.value"
+          type="number"
           style="background: var(--ion-background-color);"
         />
       </ion-col>
@@ -65,14 +65,14 @@ export default defineComponent({
   },
   emits: ['submit'],
   data: (vm) => ({ innerRecord: { ...vm.record }}),
-  watch: {
-    record(v) {
-      this.innerRecord = { ...v }
-    },
-  },
   computed: {
     isNumber(): boolean {
       return this.valueKind === 'number'
+    },
+  },
+  watch: {
+    record(v) {
+      this.innerRecord = { ...v }
     },
   },
   methods: {
