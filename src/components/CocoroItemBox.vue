@@ -3,6 +3,7 @@
     <ion-card-content>
       {{ item.name }}
       <CocoroRecordForm
+        :valueKind="item.valueKind"
         :record="record"
         @submit="saveRecord"
       />

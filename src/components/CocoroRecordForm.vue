@@ -8,11 +8,22 @@
     />
   </ion-row>
   <ion-row>
-    <ion-range
-      v-model="innerRecord.value"
-      :min="innerRecord.min"
-      :max="innerRecord.max"
-    />
+    <template v-if="isNumber">
+      <ion-col>
+        <ion-range
+          v-model="innerRecord.value"
+          :min="innerRecord.min"
+          :max="innerRecord.max"
+        />
+      </ion-col>
+      <ion-col size="3">
+        <ion-input
+          type="number"
+          v-model="innerRecord.value"
+          style="background: var(--ion-background-color);"
+        />
+      </ion-col>
+    </template>
   </ion-row>
   <ion-row class="ion-justify-content-center ion-margin-top">
     <ion-button
@@ -28,20 +39,25 @@
 </template>
 
 <script lang="ts">
-import { IonRow, IonRange, IonInput, IonButton, IonIcon } from '@ionic/vue'
+import { IonRow, IonCol, IonRange, IonInput, IonButton, IonIcon } from '@ionic/vue'
 import { defineComponent, PropType } from 'vue'
-import { Record } from '@/objects'
+import { Record, RecordValueKind } from '@/objects'
 
 export default defineComponent({
   name: 'CocoroRecordForm',
   components: {
     IonRow,
+    IonCol,
     IonRange,
     IonInput,
     IonButton,
     IonIcon,
   },
   props: {
+    valueKind: {
+      type: String as PropType<RecordValueKind>,
+      required: true,
+    },
     record: {
       type: Object as PropType<Record>,
       required: true,
@@ -52,6 +68,11 @@ export default defineComponent({
   watch: {
     record(v) {
       this.innerRecord = { ...v }
+    },
+  },
+  computed: {
+    isNumber(): boolean {
+      return this.valueKind === 'number'
     },
   },
   methods: {
