@@ -27,6 +27,15 @@ export const items = {
       max: 100,
     })
   },
+  newRecord({ id, min, max }: Item): Record {
+    return {
+      min, max,
+      itemId: id,
+      createdAt: new Date(),
+      value: 0,
+      text: '',
+    }
+  },
 }
 
 export class Database extends Dexie {

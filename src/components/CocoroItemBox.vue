@@ -2,40 +2,40 @@
   <ion-card>
     <ion-card-content>
       {{ item.name }}
-      <ion-input
-        placeholder="一言メモ"
-        class="ion-margin-bottom ion-text-center"
-        style="--background: var(--ion-background-color)"
+      <CocoroRecordForm
+        :record="record"
+        @submit="saveRecord"
       />
-      <ion-row class="ion-justify-content-center ion-margin-top">
-        <ion-button shape="round">
-          <ion-icon
-            slot="icon-only"
-            icon="checkmark"
-          />
-        </ion-button>
-      </ion-row>
     </ion-card-content>
   </ion-card>
 </template>
 
 <script lang="ts">
-import { IonCard, IonCardContent, IonButton, IonIcon } from '@ionic/vue'
+import { IonCard, IonCardContent } from '@ionic/vue'
 import { defineComponent, PropType } from 'vue'
-import { Item } from '@/objects'
+import { items } from '@/db'
+import { Item, Record } from '@/objects'
+import CocoroRecordForm from './CocoroRecordForm.vue'
 
 export default defineComponent({
   name: 'CocoroItemBox',
   components: {
     IonCard,
     IonCardContent,
-    IonButton,
-    IonIcon,
+    CocoroRecordForm,
   },
   props: {
     item: {
       type: Object as PropType<Item>,
       required: true,
+    },
+  },
+  data: (vm) => ({
+    record: items.newRecord(vm.item),
+  }),
+  methods: {
+    saveRecord(record: Record) {
+      alert(JSON.stringify(record))
     },
   },
 })

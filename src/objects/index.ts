@@ -12,7 +12,7 @@ export interface Item {
 export interface Record {
   id?: number
   itemId: number
-  text?: string
+  text: string
   value: number
   min: number
   max: number
