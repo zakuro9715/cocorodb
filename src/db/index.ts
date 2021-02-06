@@ -14,7 +14,13 @@ export async function putItem(item: Item): Promise<number> {
 }
 
 export async function createMainItem(): Promise<number> {
-  return await putItem({ id: MAIN_ITEM_ID, name: MAIN_ITEM_DEAFULT_NAME })
+  return await putItem({
+    id: MAIN_ITEM_ID,
+    name: MAIN_ITEM_DEAFULT_NAME,
+    valueKind: 'integer',
+    min: 0,
+    max: 100,
+  })
 }
 
 export async function getItem(id: number): Promise<Item | undefined> {

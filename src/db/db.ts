@@ -1,15 +1,21 @@
 import Dexie from 'dexie'
 
+export type RecordValueKind = 'integer' | 'decimal'
+
 export interface Item {
   id?: number
   name: string
+  valueKind: RecordValueKind
+  min: number
+  max: number
 }
 
-export interface MainRecordValue {
-  memo: string
-  star: number
+export interface RecordValue {
+  text?: string
+  value: number
+  min: number
+  max: number
 }
-export type RecordValue = number | MainRecordValue
 
 interface Record {
   id?: number
