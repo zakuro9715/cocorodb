@@ -5,10 +5,6 @@ import { Home, Settings } from '../views'
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    redirect: '/home',
-  },
-  {
-    path: '/home',
     name: 'Home',
     component: Home,
   },
