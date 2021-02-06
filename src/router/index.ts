@@ -7,6 +7,12 @@ const routes: Array<RouteRecordRaw> = [
     path: '/',
     name: 'Home',
     component: Home,
+    children: [
+      {
+        path: '/',
+        component: import('@/views/HomeTab.vue'),
+      },
+    ],
   },
   {
     path: '/settings',
