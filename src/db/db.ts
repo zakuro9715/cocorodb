@@ -4,6 +4,7 @@ import { Item, Record } from '@/objects'
 export const items = {
   mainId: 0,
   mainName: 'main',
+  mainPriority: 1000,
   async get(id :number): Promise<Item | undefined> {
     return await db.items.get(id)
   },
@@ -21,6 +22,7 @@ export const items = {
       id: items.mainId,
       name: items.mainName,
       valueKind: 'integer',
+      priority: items.mainPriority,
       min: 0,
       max: 100,
     })
@@ -34,7 +36,7 @@ export class Database extends Dexie {
   constructor() {
     super('AppDatabase')
     this.version(1).stores({
-      items: '++id, name, valueKind, min, max',
+      items: '++id, &priority, name, valueKind, min, max',
       records: '++id, itemId, text, value, min, max, &createdAt',
     })
 

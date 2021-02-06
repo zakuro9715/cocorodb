@@ -2,6 +2,7 @@ export type RecordValueKind = 'integer' | 'decimal'
 
 export interface Item {
   id?: number
+  priority: number
   name: string
   valueKind: RecordValueKind
   min: number
