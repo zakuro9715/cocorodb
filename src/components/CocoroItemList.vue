@@ -1,5 +1,5 @@
 <template>
-  <ion-list>
+  <ion-list style="background: var(--ion-background-color);">
     <CocoroItemBox
       v-for="item in items"
       :key="item.id"
