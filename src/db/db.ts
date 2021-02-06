@@ -2,12 +2,50 @@ import Dexie from 'dexie'
 
 export type RecordValueKind = 'integer' | 'decimal'
 
-export interface Item {
+export interface ItemObject {
   id?: number
   name: string
   valueKind: RecordValueKind
   min: number
   max: number
+}
+
+export class Item implements ItemObject {
+  static mainId = 0
+  static mainName = 'main'
+  constructor(
+    public name: string,
+    public valueKind: RecordValueKind,
+    public min: number,
+    public max: number,
+    public id?: number,
+  ) { }
+
+  static async get(id :number): Promise<Item | undefined> {
+    return await db.items.get(id)
+  }
+
+  static async getAll(): Promise<Item[]> {
+    return await db.items.toArray()
+  }
+
+  static async put(item: ItemObject): Promise<number> {
+    return await db.items.put(item)
+  }
+
+  static async getMain(): Promise<Item | undefined> {
+    return await Item.get(Item.mainId)
+  }
+
+  static async putDefaultMain(): Promise<number> {
+    return await Item.put({
+      id: Item.mainId,
+      name: Item.mainName,
+      valueKind: 'integer',
+      min: 0,
+      max: 100,
+    })
+  }
 }
 
 export interface RecordValue {
@@ -25,7 +63,7 @@ interface Record {
 }
 
 export class Database extends Dexie {
-  items: Dexie.Table<Item, number>
+  items: Dexie.Table<ItemObject, number>
   records: Dexie.Table<Record, number>
 
   constructor() {
@@ -35,7 +73,8 @@ export class Database extends Dexie {
       records: '++id, value, timestamp, itemId',
     })
 
-    this.items = this.table<Item, number>('items')
+    this.items = this.table<ItemObject, number>('items')
+    this.items.mapToClass(Item)
     this.records = this.table<Record, number>('records')
   }
 }

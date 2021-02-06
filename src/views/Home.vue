@@ -51,7 +51,7 @@ export default defineComponent({
   },
   async created() {
     await db.prepare()
-    this.items = await db.getAllItems()
+    this.items = await db.Item.getAll()
   },
 })
 </script>
