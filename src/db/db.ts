@@ -2,7 +2,7 @@ import Dexie from 'dexie'
 
 export type RecordValueKind = 'integer' | 'decimal'
 
-export interface ItemObject {
+export interface Item {
   id?: number
   name: string
   valueKind: RecordValueKind
@@ -10,42 +10,30 @@ export interface ItemObject {
   max: number
 }
 
-export class Item implements ItemObject {
-  static mainId = 0
-  static mainName = 'main'
-  constructor(
-    public name: string,
-    public valueKind: RecordValueKind,
-    public min: number,
-    public max: number,
-    public id?: number,
-  ) { }
-
-  static async get(id :number): Promise<Item | undefined> {
+export const items = {
+  mainId: 0,
+  mainName: 'main',
+  async get(id :number): Promise<Item | undefined> {
     return await db.items.get(id)
-  }
-
-  static async getAll(): Promise<Item[]> {
+  },
+  async getAll(): Promise<Item[]> {
     return await db.items.toArray()
-  }
-
-  static async put(item: ItemObject): Promise<number> {
+  },
+  async put(item: Item): Promise<number> {
     return await db.items.put(item)
-  }
-
-  static async getMain(): Promise<Item | undefined> {
-    return await Item.get(Item.mainId)
-  }
-
-  static async putDefaultMain(): Promise<number> {
-    return await Item.put({
-      id: Item.mainId,
-      name: Item.mainName,
+  },
+  async getMain(): Promise<Item | undefined> {
+    return await items.get(items.mainId)
+  },
+  async putDefaultMain(): Promise<number> {
+    return await items.put({
+      id: items.mainId,
+      name: items.mainName,
       valueKind: 'integer',
       min: 0,
       max: 100,
     })
-  }
+  },
 }
 
 export interface RecordValue {
@@ -63,7 +51,7 @@ interface Record {
 }
 
 export class Database extends Dexie {
-  items: Dexie.Table<ItemObject, number>
+  items: Dexie.Table<Item, number>
   records: Dexie.Table<Record, number>
 
   constructor() {
@@ -73,8 +61,7 @@ export class Database extends Dexie {
       records: '++id, value, timestamp, itemId',
     })
 
-    this.items = this.table<ItemObject, number>('items')
-    this.items.mapToClass(Item)
+    this.items = this.table<Item, number>('items')
     this.records = this.table<Record, number>('records')
   }
 }

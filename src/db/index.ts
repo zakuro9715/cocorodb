@@ -1,10 +1,10 @@
-import { db, Item } from './db'
+import { db, items } from './db'
 
-export { Item } from './db'
+export { Item, items } from './db'
 
 export async function prepare(): Promise<void> {
-  if (!(await Item.getMain())) {
-    await Item.putDefaultMain()
+  if (!(await items.getMain())) {
+    await items.putDefaultMain()
   }
 }
 
