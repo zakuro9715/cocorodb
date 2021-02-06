@@ -1,5 +1,6 @@
 import Dexie from 'dexie'
 import { Item, Record } from '@/objects'
+import { unwrap } from '@/utils'
 
 export const items = {
   mainId: 0,
@@ -27,10 +28,13 @@ export const items = {
       max: 100,
     })
   },
-  newRecord({ id, min, max }: Item): Record {
+}
+
+export const records = {
+  new({ id, min, max }: Item): Record {
     return {
       min, max,
-      itemId: id,
+      itemId: unwrap(id),
       createdAt: new Date(),
       value: 0,
       text: '',

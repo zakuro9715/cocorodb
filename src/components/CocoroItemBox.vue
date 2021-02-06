@@ -13,7 +13,7 @@
 <script lang="ts">
 import { IonCard, IonCardContent } from '@ionic/vue'
 import { defineComponent, PropType } from 'vue'
-import { items } from '@/db'
+import { items, records } from '@/db'
 import { Item, Record } from '@/objects'
 import CocoroRecordForm from './CocoroRecordForm.vue'
 
@@ -31,7 +31,7 @@ export default defineComponent({
     },
   },
   data: (vm) => ({
-    record: items.newRecord(vm.item),
+    record: records.new(vm.item),
   }),
   methods: {
     saveRecord(record: Record) {

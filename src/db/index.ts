@@ -1,6 +1,6 @@
 import { db, items } from './db'
 
-export { items } from './db'
+export { items, records } from './db'
 
 export async function prepare(): Promise<void> {
   if (!(await items.getMain())) {
