@@ -34,8 +34,9 @@ export default defineComponent({
     record: records.new(vm.item),
   }),
   methods: {
-    saveRecord(record: Record) {
-      alert(JSON.stringify(record))
+    async saveRecord(record: Record) {
+      await records.put(record)
+      this.record = records.new(this.item)
     },
   },
 })

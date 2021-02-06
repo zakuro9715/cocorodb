@@ -40,6 +40,9 @@ export const records = {
       text: '',
     }
   },
+  async put(record: Record): Promise<number> {
+    return await db.records.put(record)
+  },
 }
 
 export class Database extends Dexie {
