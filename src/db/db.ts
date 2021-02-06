@@ -34,8 +34,8 @@ export class Database extends Dexie {
   constructor() {
     super('AppDatabase')
     this.version(1).stores({
-      items: '++id, name',
-      records: '++id, value, timestamp, itemId',
+      items: '++id, name, valueKind, min, max',
+      records: '++id, itemId, text, value, min, max, &createdAt',
     })
 
     this.items = this.table<Item, number>('items')
