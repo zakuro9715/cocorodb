@@ -7,11 +7,6 @@
         class="ion-margin-bottom ion-text-center"
         style="--background: var(--ion-background-color)"
       />
-      <FiveStarInput
-        size="large"
-        :value="star"
-        @input="star = $event"
-      />
       <ion-row class="ion-justify-content-center ion-margin-top">
         <ion-button shape="round">
           <ion-icon
@@ -28,7 +23,6 @@
 import { IonCard, IonCardContent, IonButton, IonIcon } from '@ionic/vue'
 import { defineComponent, PropType } from 'vue'
 import { Item } from '@/db'
-import FiveStarInput from './FiveStarInput.vue'
 
 export default defineComponent({
   name: 'CocoroItemBox',
@@ -37,7 +31,6 @@ export default defineComponent({
     IonCardContent,
     IonButton,
     IonIcon,
-    FiveStarInput,
   },
   props: {
     item: {
@@ -45,8 +38,5 @@ export default defineComponent({
       required: true,
     },
   },
-  data: () => ({
-    star: 3,
-  }),
 })
 </script>
