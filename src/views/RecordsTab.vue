@@ -11,7 +11,7 @@
 import { IonContent, IonPage } from '@ionic/vue'
 import { defineComponent } from 'vue'
 import { Record } from '@/objects'
-import HomeHeader from '@/components/HomeHeader'
+import HomeHeader from './components/HomeHeader.vue'
 
 export default defineComponent({
   name: 'RecordsTab',

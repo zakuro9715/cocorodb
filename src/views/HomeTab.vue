@@ -13,7 +13,7 @@ import { defineComponent } from 'vue'
 import * as db from '@/db'
 import { Item } from '@/objects'
 import CocoroItemList from '@/components/CocoroItemList.vue'
-import HomeHeader from '@/components/HomeHeader.vue'
+import HomeHeader from './components/HomeHeader.vue'
 
 export default defineComponent({
   name: 'HomeTab',
