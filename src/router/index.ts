@@ -10,11 +10,11 @@ const routes: Array<RouteRecordRaw> = [
     children: [
       {
         path: '/',
-        component: import('@/views/HomeTab.vue'),
+        component: async () => import('@/views/HomeTab.vue'),
       },
       {
         path: '/records',
-        component: import('@/views/RecordsTab.vue'),
+        component: async () => import('@/views/RecordsTab.vue'),
       },
     ],
   },

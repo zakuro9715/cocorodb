@@ -19,6 +19,7 @@ import {
   IonTabs,
   IonTabBar,
   IonTabButton,
+  IonLabel,
 } from '@ionic/vue'
 import { defineComponent } from 'vue'
 
@@ -29,6 +30,7 @@ export default defineComponent({
     IonTabs,
     IonTabBar,
     IonTabButton,
+    IonLabel,
   },
 })
 </script>

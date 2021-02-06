@@ -16,6 +16,7 @@
 <script lang="ts">
 import {
   IonHeader,
+  IonToolbar,
   IonTitle,
   IonButtons,
   IonButton,
@@ -27,6 +28,7 @@ export default defineComponent({
   name: 'HomeHeader',
   components: {
     IonHeader,
+    IonToolbar,
     IonTitle,
     IonButtons,
     IonButton,
