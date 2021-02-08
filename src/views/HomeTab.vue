@@ -10,7 +10,7 @@
 <script lang="ts">
 import { IonPage, IonContent } from '@ionic/vue'
 import { defineComponent } from 'vue'
-import * as store from '@/store'
+import * as store from '@/db'
 import CocoroItemList from '@/components/CocoroItemList.vue'
 import HomeHeader from './components/HomeHeader.vue'
 

@@ -27,7 +27,7 @@ import {
   IonToolbar,
 } from '@ionic/vue'
 import { defineComponent } from 'vue'
-import * as store from '@/store'
+import * as store from '@/db'
 
 export default defineComponent({
   name: 'Settings',

@@ -41,7 +41,7 @@
 <script lang="ts">
 import { IonRow, IonCol, IonRange, IonInput, IonButton, IonIcon } from '@ionic/vue'
 import { defineComponent, PropType } from 'vue'
-import { Record, RecordValueKind } from '@/store'
+import { Record, RecordValueKind } from '@/db'
 
 export default defineComponent({
   name: 'CocoroRecordForm',
