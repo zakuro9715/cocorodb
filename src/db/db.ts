@@ -31,9 +31,9 @@ export const items = {
 }
 
 export const records = {
-  new({ id, min, max }: Item): Record {
+  new({ id, min, max, valueKind }: Item): Record {
     return {
-      min, max,
+      min, max, valueKind,
       itemId: unwrap(id),
       createdAt: new Date(),
       value: 0,
@@ -53,7 +53,7 @@ export class Database extends Dexie {
     super('AppDatabase')
     this.version(1).stores({
       items: '++id, &priority, name, valueKind, min, max',
-      records: '++id, itemId, text, value, min, max, &createdAt',
+      records: '++id, itemId, text, value, valueKind, min, max, &createdAt',
     })
 
     this.items = this.table<Item, number>('items')

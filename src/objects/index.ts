@@ -14,6 +14,7 @@ export interface Record {
   itemId: number
   text: string
   value: number
+  valueKind: RecordValueKind
   min: number
   max: number
   createdAt: Date
