@@ -1,7 +1,9 @@
+export type ID = number
+
 export type RecordValueKind = 'number'
 
 export interface Item {
-  id?: number
+  id?: ID
   priority: number
   name: string
   valueKind: RecordValueKind
@@ -10,7 +12,7 @@ export interface Item {
 }
 
 export interface Record {
-  id?: number
+  id?: ID
   itemId: number
   text: string
   value: number

@@ -10,7 +10,7 @@
 <script lang="ts">
 import { IonContent, IonPage } from '@ionic/vue'
 import { defineComponent } from 'vue'
-import { Record } from '@/objects'
+import { Record } from '@/store'
 import HomeHeader from './components/HomeHeader.vue'
 
 export default defineComponent({

@@ -11,7 +11,7 @@
 <script lang="ts">
 import { IonList } from '@ionic/vue'
 import { defineComponent, PropType } from 'vue'
-import { Item } from '@/objects'
+import { Item } from '@/store'
 import CocoroItemBox from './CocoroItemBox.vue'
 
 export default defineComponent({

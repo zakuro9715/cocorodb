@@ -17,3 +17,5 @@ export function unwrap<T>(v :T | undefined | Promise<T | undefined>): any {
   }
   return v
 }
+
+export type Option<T> = T | undefined

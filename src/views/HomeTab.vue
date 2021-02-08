@@ -10,8 +10,7 @@
 <script lang="ts">
 import { IonPage, IonContent } from '@ionic/vue'
 import { defineComponent } from 'vue'
-import * as db from '@/db'
-import { Item } from '@/objects'
+import * as store from '@/store'
 import CocoroItemList from '@/components/CocoroItemList.vue'
 import HomeHeader from './components/HomeHeader.vue'
 
@@ -24,11 +23,11 @@ export default defineComponent({
     CocoroItemList,
   },
   data: () => ({
-    items: Array<Item>(),
+    items: Array<store.Item>(),
   }),
   async created() {
-    await db.prepare()
-    this.items = await db.items.getAll()
+    await store.prepare()
+    this.items = await store.items.getAll()
   },
 })
 </script>

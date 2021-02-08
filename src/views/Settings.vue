@@ -27,7 +27,7 @@ import {
   IonToolbar,
 } from '@ionic/vue'
 import { defineComponent } from 'vue'
-import * as db from '@/db'
+import * as store from '@/store'
 
 export default defineComponent({
   name: 'Settings',
@@ -42,7 +42,7 @@ export default defineComponent({
     async clearDB(): Promise<void> {
       // eslint-disable-next-line no-alert
       if (confirm('全データ削除を実行しますか')) {
-        await db.clear()
+        await store.clear()
       }
     },
   },

@@ -14,8 +14,8 @@
 <script lang="ts">
 import { IonCard, IonCardContent } from '@ionic/vue'
 import { defineComponent, PropType } from 'vue'
-import { records } from '@/db'
-import { Item, Record } from '@/objects'
+import { records } from '@/store'
+import { Item, Record } from '@/store'
 import CocoroRecordForm from './CocoroRecordForm.vue'
 
 export default defineComponent({
