@@ -27,11 +27,12 @@ import { addIcons } from 'ionicons'
 import { settings, checkmark, checkmarkCircle, star } from 'ionicons/icons'
 addIcons({ settings, checkmark, checkmarkCircle, star })
 
-const app = createApp(App)
+const app = createApp(App).use(store)
   .use(IonicVue)
   .use(router)
 
 import { handleFatalError } from './errors'
+import store from './store'
 
 app.config.errorHandler = handleFatalError
 
