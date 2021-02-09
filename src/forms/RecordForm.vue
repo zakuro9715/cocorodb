@@ -41,10 +41,10 @@
 <script lang="ts">
 import { IonRow, IonCol, IonRange, IonInput, IonButton, IonIcon } from '@ionic/vue'
 import { defineComponent, PropType } from 'vue'
-import { Record, RecordValueKind } from '@/db'
+import { Record } from '@/db'
 
 export default defineComponent({
-  name: 'CocoroRecordForm',
+  name: 'RecordForm',
   components: {
     IonRow,
     IonCol,
@@ -54,10 +54,6 @@ export default defineComponent({
     IonIcon,
   },
   props: {
-    valueKind: {
-      type: String as PropType<RecordValueKind>,
-      required: true,
-    },
     record: {
       type: Object as PropType<Record>,
       required: true,
@@ -67,7 +63,7 @@ export default defineComponent({
   data: (vm) => ({ innerRecord: { ...vm.record }}),
   computed: {
     isNumber(): boolean {
-      return this.valueKind === 'number'
+      return this.record.valueKind === 'number'
     },
   },
   watch: {
