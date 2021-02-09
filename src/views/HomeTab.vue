@@ -10,6 +10,7 @@
 <script lang="ts">
 import { IonPage, IonContent } from '@ionic/vue'
 import { defineComponent } from 'vue'
+import { mapActions, mapGetters } from 'vuex'
 import * as store from '@/db'
 import CocoroItemList from '@/components/CocoroItemList.vue'
 import HomeHeader from './components/HomeHeader.vue'
@@ -22,12 +23,19 @@ export default defineComponent({
     HomeHeader,
     CocoroItemList,
   },
-  data: () => ({
-    items: Array<store.Item>(),
-  }),
+  computed: {
+    ...mapGetters('items', {
+      items: 'list',
+    }),
+  },
   async created() {
     await store.prepare()
-    this.items = await store.items.getAll()
+    await this.loadAllItems()
+  },
+  methods: {
+    ...mapActions('items', {
+      loadAllItems: 'loadAll',
+    }),
   },
 })
 </script>
