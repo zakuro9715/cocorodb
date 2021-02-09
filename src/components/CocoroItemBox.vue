@@ -2,7 +2,7 @@
   <ion-card>
     <ion-card-content>
       {{ item.name }}
-      <CocoroRecordForm
+      <RecordForm
         :value-kind="item.valueKind"
         :record="record"
         @submit="saveRecord"
@@ -16,14 +16,14 @@ import { IonCard, IonCardContent } from '@ionic/vue'
 import { defineComponent, PropType } from 'vue'
 import { records } from '@/db'
 import { Item, Record } from '@/db'
-import CocoroRecordForm from './CocoroRecordForm.vue'
+import RecordForm from '@/forms/RecordForm.vue'
 
 export default defineComponent({
   name: 'CocoroItemBox',
   components: {
     IonCard,
     IonCardContent,
-    CocoroRecordForm,
+    RecordForm,
   },
   props: {
     item: {
