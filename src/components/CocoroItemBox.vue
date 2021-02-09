@@ -5,7 +5,7 @@
       <RecordForm
         :value-kind="item.valueKind"
         :record="record"
-        @submit="saveRecord"
+        @submit="submitRecord"
       />
     </ion-card-content>
   </ion-card>
@@ -14,6 +14,7 @@
 <script lang="ts">
 import { IonCard, IonCardContent } from '@ionic/vue'
 import { defineComponent, PropType } from 'vue'
+import { mapActions } from 'vuex'
 import { records } from '@/db'
 import { Item, Record } from '@/db'
 import RecordForm from '@/forms/RecordForm.vue'
@@ -35,8 +36,11 @@ export default defineComponent({
     record: records.new(vm.item),
   }),
   methods: {
-    async saveRecord(record: Record) {
-      await records.put(record)
+    ...mapActions('records', {
+      putRecord: 'put',
+    }),
+    async submitRecord(record: Record) {
+      this.putRecord(record)
       this.record = records.new(this.item)
     },
   },
