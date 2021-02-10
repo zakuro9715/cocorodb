@@ -41,7 +41,7 @@
 <script lang="ts">
 import { IonRow, IonCol, IonRange, IonInput, IonButton, IonIcon } from '@ionic/vue'
 import { defineComponent, PropType } from 'vue'
-import { Record } from '@/db'
+import { Record } from '@/models'
 
 export default defineComponent({
   name: 'RecordForm',

@@ -1,5 +1,5 @@
-import { unwrap } from '@/utils'
-import { db, Item, ID } from '@/db'
+import { Item } from '@/models'
+import { db, ID, Saved, toSaved } from '@/db'
 import {
   Repository,
   ActionTree,
@@ -26,10 +26,9 @@ export const mutations: MutationTree<State> = {
   setIds(state: State, ids: ID[]): void {
     state.ids = ids
   },
-  appendItem(state: State, item: Item): void {
-    const id = unwrap(item.id)
-    state.repo[id] = item
-    state.ids.push(id)
+  appendItem(state: State, item: Saved<Item>): void {
+    state.repo[item.id] = item
+    state.ids.push(item.id)
   },
 }
 
@@ -37,7 +36,7 @@ export const actions: ActionTree<State> = {
   async loadAll({ commit }: any): Promise<void> {
     commit('setRepo', {})
     commit('setIds', [])
-    const items = await db.items.toArray()
+    const items = (await db.items.toArray()).map((v) => new Item(toSaved(v)))
     items.forEach((v: Item) => {
       commit('appendItem', v)
     })

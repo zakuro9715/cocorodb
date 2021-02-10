@@ -12,7 +12,7 @@
 <script lang="ts">
 import { IonCard, IonCardContent } from '@ionic/vue'
 import { defineComponent, PropType } from 'vue'
-import { Record } from '@/db'
+import { Record } from '@/models'
 import { RecordForm } from '@/forms'
 
 export default defineComponent({

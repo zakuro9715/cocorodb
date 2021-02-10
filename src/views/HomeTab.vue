@@ -18,7 +18,8 @@
 import { IonPage, IonContent } from '@ionic/vue'
 import { defineComponent } from 'vue'
 import { mapActions, mapGetters } from 'vuex'
-import { records, Record, Item, prepare as prepareDB } from '@/db'
+import { records, prepare as prepareDB } from '@/db'
+import { Record, Item } from '@/models'
 import { CocoroList, CocoroRecordBox } from '@/components'
 import HomeHeader from './components/HomeHeader.vue'
 

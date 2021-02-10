@@ -1,9 +1,9 @@
 import Dexie from 'dexie'
-import { Item, Record } from './interfaces'
+import { ItemData, RecordData } from './data'
 
 export class Database extends Dexie {
-  items: Dexie.Table<Item, number>
-  records: Dexie.Table<Record, number>
+  items: Dexie.Table<ItemData, number>
+  records: Dexie.Table<RecordData, number>
 
   constructor() {
     super('AppDatabase')
@@ -12,8 +12,8 @@ export class Database extends Dexie {
       records: '++id, itemId, text, value, valueKind, min, max, &createdAt',
     })
 
-    this.items = this.table<Item, number>('items')
-    this.records = this.table<Record, number>('records')
+    this.items = this.table<ItemData, number>('items')
+    this.records = this.table<RecordData, number>('records')
   }
 }
 

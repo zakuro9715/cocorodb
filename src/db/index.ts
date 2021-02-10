@@ -1,9 +1,10 @@
 import { db } from './db'
-import { ID, Item, Record } from './interfaces'
+import { ID, ItemData, RecordData } from './data'
 import { Option, unwrap } from '@/utils'
 
 export { db } from './db'
-export * from './interfaces'
+export * from './data'
+export { Saved, toSaved } from './utils'
 
 export async function prepare(): Promise<void> {
   if (!(await items.getMain())) {
@@ -21,10 +22,10 @@ export const items = {
   mainName: 'main',
   mainPriority: 1000,
 
-  get: async (id :number): Promise<Option<Item>> => await db.items.get(id),
-  getAll: async (): Promise<Item[]> => await db.items.toArray(),
-  put: async (item: Item): Promise<ID> => await db.items.put(item),
-  getMain: async (): Promise<Option<Item>> => await items.get(items.mainId),
+  get: async (id :number): Promise<Option<ItemData>> => await db.items.get(id),
+  getAll: async (): Promise<ItemData[]> => await db.items.toArray(),
+  put: async (item: ItemData): Promise<ID> => await db.items.put(item),
+  getMain: async (): Promise<Option<ItemData>> => await items.get(items.mainId),
   putDefaultMain: async (): Promise<ID> => items.put({
     id: items.mainId,
     name: items.mainName,
@@ -36,12 +37,12 @@ export const items = {
 }
 
 export const records = {
-  new: ({ id, min, max, valueKind }: Item): Record => ({
+  new: ({ id, min, max, valueKind }: ItemData): RecordData => ({
     min, max, valueKind,
     itemId: unwrap(id),
     createdAt: new Date(),
     value: 0,
     text: '',
   }),
-  put: async (record: Record): Promise<ID> => await db.records.put(record),
+  put: async (record: RecordData): Promise<ID> => await db.records.put(record),
 }

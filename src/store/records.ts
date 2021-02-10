@@ -1,5 +1,5 @@
-import { unwrap } from '@/utils'
-import { db, Record, ID } from '@/db'
+import { Record, Item } from '@/models'
+import { db, ID, Saved, toSaved, RecordData } from '@/db'
 import {
   Repository,
   ActionTree,
@@ -26,24 +26,25 @@ export const mutations: MutationTree<State> = {
   setIds(state: State, ids: ID[]): void {
     state.ids = ids
   },
-  push(state: State, item: Record): void {
-    const id = unwrap(item.id)
-    state.repo[id] = item
-    state.ids.push(id)
+  push(state: State, v: Record): void {
+    state.repo[v.id] = v
+    state.ids.push(v.id)
   },
 }
 
 export const actions: ActionTree<State> = {
-  async loadAll({ commit }: any): Promise<void> {
+  async loadAll({ commit, rootGetters: { items } }: any): Promise<void> {
     commit('setRepo', {})
     commit('setIds', [])
-    const list = await db.records.toArray()
+    const list = (await db.records.toArray())
+      .map((v) => new Record({ ...toSaved(v), item: items.get(v.itemId) as Item }))
     list.forEach((v: Record) => { commit('push', v) })
   },
-  async put({ commit }: any, record: Record): Promise<number> {
-    const v = await db.records.put(record)
-    commit('push', v)
-    return v
+  async put({ commit, rootGetters: { items } }: any, data: RecordData): Promise<Record> {
+    const id = await db.records.put(data)
+    const record = new Record({ ...data, id, item: items.get(data.itemId) as Item })
+    commit('push', record)
+    return record
   },
 }
 
