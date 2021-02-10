@@ -49,6 +49,7 @@ export default defineComponent({
     await prepareDB()
     await this.loadAllItems()
     this.initRecords()
+    console.log(this.$store)
   },
   methods: {
     ...mapActions({

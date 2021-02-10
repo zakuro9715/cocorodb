@@ -1,12 +1,12 @@
 import { ID, Saved, ItemData, RecordData, RecordValueKind } from '@/db'
 
 export class Item implements ItemData {
-  public id: ID
-  public priority: number
-  public name: string
-  public valueKind: RecordValueKind
-  public min: number
-  public max: number
+  id: ID
+  priority: number
+  name: string
+  valueKind: RecordValueKind
+  min: number
+  max: number
 
   constructor(v: Saved<ItemData>) {
     this.id = v.id
@@ -19,17 +19,17 @@ export class Item implements ItemData {
 }
 
 export class Record implements RecordData {
-  public id: ID
-  public item: Saved<Item>
-  public text: string
-  public value: number
-  public valueKind: RecordValueKind
-  public min: number
-  public max: number
-  public createdAt: Date
+  id: ID
+  item: Saved<Item>
+  text: string
+  value: number
+  valueKind: RecordValueKind
+  min: number
+  max: number
+  createdAt: Date
 
 
-  public get itemId() {
+  get itemId() {
     return this.item.id
   }
 

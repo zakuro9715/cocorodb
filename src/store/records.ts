@@ -33,16 +33,16 @@ export const mutations: MutationTree<State> = {
 }
 
 export const actions: ActionTree<State> = {
-  async loadAll({ commit, rootGetters: { items } }: any): Promise<void> {
+  async loadAll({ commit, rootGetters: { items }}: any): Promise<void> {
     commit('setRepo', {})
     commit('setIds', [])
     const list = (await db.records.toArray())
       .map((v) => new Record({ ...toSaved(v), item: items.get(v.itemId) as Item }))
     list.forEach((v: Record) => { commit('push', v) })
   },
-  async put({ commit, rootGetters: { items } }: any, data: RecordData): Promise<Record> {
+  async put({ commit, rootGetters: { 'items/getById': getItem }}: any, data: RecordData): Promise<Record> {
     const id = await db.records.put(data)
-    const record = new Record({ ...data, id, item: items.get(data.itemId) as Item })
+    const record = new Record({ ...data, id, item: getItem(data.itemId) as Item })
     commit('push', record)
     return record
   },

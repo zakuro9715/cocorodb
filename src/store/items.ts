@@ -45,4 +45,7 @@ export const actions: ActionTree<State> = {
 
 export const getters: GetterTree<State> = {
   list: (state: State) => state.ids.map((id) => state.repo[id]),
+  getById(state: State) {
+    return (id: ID) => state.repo[id]
+  },
 }
