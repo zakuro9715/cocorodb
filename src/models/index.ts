@@ -1,14 +1,14 @@
 import { ID, Saved, ItemData, RecordData, RecordValueKind } from '@/db'
 
 export class Item implements ItemData {
-  id: ID
+  id?: ID
   priority: number
   name: string
   valueKind: RecordValueKind
   min: number
   max: number
 
-  constructor(v: Saved<ItemData>) {
+  constructor(v: ItemData) {
     this.id = v.id
     this.priority = v.priority
     this.name = v.name
@@ -19,7 +19,7 @@ export class Item implements ItemData {
 }
 
 export class Record implements RecordData {
-  id: ID
+  id?: ID
   item: Saved<Item>
   text: string
   value: number
@@ -33,7 +33,7 @@ export class Record implements RecordData {
     return this.item.id
   }
 
-  constructor(v: Saved<Omit<RecordData, 'itemId'> & { item: Item }>) {
+  constructor(v: Omit<RecordData, 'itemId'> & { item: Saved<Item> }) {
     this.id = v.id
     this.item = v.item
     this.text = v.text

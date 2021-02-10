@@ -8,7 +8,7 @@ import {
 } from './types'
 
 interface State {
-  repo: Repository<Item>
+  repo: Repository<Saved<Item>>
   ids: ID[]
 }
 
@@ -20,7 +20,7 @@ export const state: State = {
 }
 
 export const mutations: MutationTree<State> = {
-  setRepo(state: State, repo: Repository<Item>) {
+  setRepo(state: State, repo: Repository<Saved<Item>>) {
     state.repo = repo
   },
   setIds(state: State, ids: ID[]): void {

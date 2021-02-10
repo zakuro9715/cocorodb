@@ -26,7 +26,7 @@ export const mutations: MutationTree<State> = {
   setIds(state: State, ids: ID[]): void {
     state.ids = ids
   },
-  push(state: State, v: Record): void {
+  push(state: State, v: Saved<Record>): void {
     state.repo[v.id] = v
     state.ids.push(v.id)
   },
@@ -37,12 +37,12 @@ export const actions: ActionTree<State> = {
     commit('setRepo', {})
     commit('setIds', [])
     const list = (await db.records.toArray())
-      .map((v) => new Record({ ...toSaved(v), item: items.get(v.itemId) as Item }))
+      .map((v) => toSaved(new Record({ ...v, item: items.get(v.itemId) as Saved<Item> })))
     list.forEach((v: Record) => { commit('push', v) })
   },
   async put({ commit, rootGetters: { 'items/getById': getItem }}: any, data: RecordData): Promise<Record> {
     const id = await db.records.put(data)
-    const record = new Record({ ...data, id, item: getItem(data.itemId) as Item })
+    const record = new Record({ ...data, id, item: getItem(data.itemId) as Saved<Item> })
     commit('push', record)
     return record
   },

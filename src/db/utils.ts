@@ -4,4 +4,7 @@ interface DBObject {
   id?: ID
 }
 export type Saved<T extends DBObject> = Omit<T, 'id'> & Required<Pick<T, 'id'>>
-export const toSaved = <T extends DBObject>(v: T): Saved<T> => ({ ...v, id: unwrap(v.id) })
+export function toSaved<T extends DBObject>(v: T): Saved<T> {
+  unwrap(v.id)
+  return v as Saved<T>
+}
