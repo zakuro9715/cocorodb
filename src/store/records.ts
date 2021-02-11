@@ -1,53 +1,39 @@
-import { Record, Item } from '@/models'
+import { reactive } from 'vue'
+import { Record } from '@/models'
 import { db, ID, Saved, toSaved, RecordData } from '@/db'
-import {
-  Repository,
-  ActionTree,
-  MutationTree,
-  GetterTree,
-} from './types'
+
+import { ItemStore } from './items'
+import { Repository } from './types'
 
 interface State {
   repo: Repository<Record>
   ids: ID[]
 }
 
-export const namespaced = true
+export const createRecordStore = (itemStore: ItemStore) => {
+  const state = reactive<State>({ repo: {}, ids: []})
+  const list = state.ids.map((id) => state.repo[id])
 
-export const state: State = {
-  repo: {},
-  ids: [],
-}
-
-export const mutations: MutationTree<State> = {
-  setRepo(state: State, repo: Repository<Record>) {
-    state.repo = repo
-  },
-  setIds(state: State, ids: ID[]): void {
-    state.ids = ids
-  },
-  push(state: State, v: Saved<Record>): void {
+  function pushRecord(v: Saved<Record>): void {
     state.repo[v.id] = v
     state.ids.push(v.id)
-  },
-}
+  }
 
-export const actions: ActionTree<State> = {
-  async loadAll({ commit, rootGetters: { items }}: any): Promise<void> {
-    commit('setRepo', {})
-    commit('setIds', [])
-    const list = (await db.records.toArray())
-      .map((v) => toSaved(new Record({ ...v, item: items.get(v.itemId) as Saved<Item> })))
-    list.forEach((v: Record) => { commit('push', v) })
-  },
-  async put({ commit, rootGetters: { 'items/getById': getItem }}: any, data: RecordData): Promise<Record> {
+
+  const newRecord = (v: RecordData) => new Record({ ...v, item: itemStore.getById(v.itemId) })
+  async function loadAll(): Promise<void> {
+    const list = (await db.records.toArray()).map((v) => toSaved(newRecord(v)))
+    list.forEach((v) => { pushRecord(v) })
+  }
+  async function put(data: RecordData): Promise<Record> {
     const id = await db.records.put(data)
-    const record = new Record({ ...data, id, item: getItem(data.itemId) as Saved<Item> })
-    commit('push', record)
+    const record = newRecord({ ...data, id })
     return record
-  },
+  }
+
+  const actions = { loadAll, put }
+  const getters = { list }
+  return { ...actions, ...getters }
 }
 
-export const getters: GetterTree<State> = {
-  list: (state: State) => state.ids.map((id) => state.repo[id]),
-}
+export type RecordStore = ReturnType<typeof createRecordStore>

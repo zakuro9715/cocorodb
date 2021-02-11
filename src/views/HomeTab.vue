@@ -2,12 +2,12 @@
   <ion-page>
     <ion-content :fullscreen="true">
       <HomeHeader />
-      <CocoroList v-if="items.length > 0">
+      <CocoroList>
         <CocoroRecordBox
-          v-for="item in items"
-          :key="item.id"
-          :record="newRecord(item)"
-          @submit="submitRecord"
+          v-for="i, record in records"
+          :key="i"
+          :record="record"
+          @submit="submitRecord(i, event)"
         />
       </CocoroList>
     </ion-content>
@@ -16,17 +16,14 @@
 
 <script lang="ts">
 import { IonPage, IonContent } from '@ionic/vue'
-import { defineComponent } from 'vue'
+import { defineComponent, reactive, computed } from 'vue'
 import { mapActions, mapGetters } from 'vuex'
-import { records, prepare as prepareDB } from '@/db'
+import { records, prepare as prepareDB, RecordData } from '@/db'
 import { Record, Item } from '@/models'
+import { useGlobalStore } from '@/store'
 import { CocoroList, CocoroRecordBox } from '@/components'
 import HomeHeader from './components/HomeHeader.vue'
 
-
-interface Data {
-  records: { [key: number]: Record }
-}
 
 export default defineComponent({
   name: 'HomeTab',
@@ -37,35 +34,20 @@ export default defineComponent({
     CocoroList,
     CocoroRecordBox,
   },
-  data: (): Data => ({
-    records: {},
-  }),
-  computed: {
-    ...mapGetters('items', {
-      items: 'list',
-    }),
-  },
-  async created() {
+  async setup() {
+    console.log('errrrrrr')
+    const store = useGlobalStore()
+    console.log(store)
     await prepareDB()
-    await this.loadAllItems()
-    this.initRecords()
-    console.log(this.$store)
-  },
-  methods: {
-    ...mapActions({
-      loadAllItems: 'items/loadAll',
-      putRecord: 'records/put',
-    }),
-    initRecords() {
-      this.records = Object.fromEntries(this.items.map((v: Item) => [v.id, records.new(v)]))
-    },
-    newRecord(item: Item) {
-      return records.new(item)
-    },
-    async submitRecord(record: Record) {
-      await this.putRecord(record)
-      this.initRecords()
-    },
+    await store.item.loadAll()
+    const records = reactive(store.item.newEmptyRecords())
+    const putRecord = store.record.put
+    async function submitRecord(i: number, record: Record) {
+      const saved = await putRecord(record)
+      records[i] = saved.item.newRecordData()
+    }
+
+    return { records, list: computed(() => store.item.list) }
   },
 })
 </script>

@@ -1,51 +1,37 @@
+import { computed, reactive } from 'vue'
 import { Item } from '@/models'
-import { db, ID, Saved, toSaved } from '@/db'
-import {
-  Repository,
-  ActionTree,
-  MutationTree,
-  GetterTree,
-} from './types'
+import { records, db, ID, Saved, toSaved, RecordData } from '@/db'
+import { Repository } from './types'
 
 interface State {
   repo: Repository<Saved<Item>>
   ids: ID[]
 }
 
-export const namespaced = true
+export const createItemStore = () => {
+  const state = reactive<State>({ repo: {}, ids: [] })
+  const list = state.ids.map((id) => state.repo[id])
 
-export const state: State = {
-  repo: {},
-  ids: [],
-}
-
-export const mutations: MutationTree<State> = {
-  setRepo(state: State, repo: Repository<Saved<Item>>) {
-    state.repo = repo
-  },
-  setIds(state: State, ids: ID[]): void {
-    state.ids = ids
-  },
-  appendItem(state: State, item: Saved<Item>): void {
+  function pushItem(item: Saved<Item>): void {
     state.repo[item.id] = item
     state.ids.push(item.id)
-  },
+  }
+
+  async function loadAll(): Promise<void> {
+    const list = (await db.items.toArray()).map((v) => toSaved(new Item(v)))
+    console.log(list)
+    list.forEach((v) => { pushItem(v) })
+  }
+
+  const newEmptyRecords = (): Repository<RecordData> => Object.fromEntries(
+    list.map((v) => [v.id, records.new(v)])
+  )
+
+  const getById = (id: ID) => state.repo[id]
+
+  const methods = { loadAll, getById, newEmptyRecords }
+  const getters = { list }
+  return { ...methods, ...getters }
 }
 
-export const actions: ActionTree<State> = {
-  async loadAll({ commit }: any): Promise<void> {
-    commit('setRepo', {})
-    commit('setIds', [])
-    const items = (await db.items.toArray()).map((v) => new Item(toSaved(v)))
-    items.forEach((v: Item) => {
-      commit('appendItem', v)
-    })
-  },
-}
-
-export const getters: GetterTree<State> = {
-  list: (state: State) => state.ids.map((id) => state.repo[id]),
-  getById(state: State) {
-    return (id: ID) => state.repo[id]
-  },
-}
+export type ItemStore = ReturnType<typeof createItemStore>
