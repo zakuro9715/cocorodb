@@ -16,13 +16,10 @@ export const createItemStore = () => {
   function pushItem(item: Saved<Item>): void {
     state.repo[item.id] = item
     state.ids.value.push(item.id)
-    console.log('push', state.ids.value.map((v) => v))
-    console.log('push', list.value)
   }
 
   async function loadAll(): Promise<void> {
     const list = (await db.items.toArray()).map((v) => toSaved(new Item(v)))
-    console.log(list)
     list.forEach((v) => { pushItem(v) })
   }
 
