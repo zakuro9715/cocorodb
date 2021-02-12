@@ -10,6 +10,7 @@ interface State {
   ids: ID[]
 }
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const createRecordStore = (itemStore: ItemStore) => {
   const state = reactive<State>({ repo: {}, ids: []})
   const list = state.ids.map((id) => state.repo[id])

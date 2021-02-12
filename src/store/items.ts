@@ -4,6 +4,8 @@ import { db, ID, Saved, toSaved } from '@/db'
 import { Repository } from './types'
 
 type Repo = Repository<Saved<Item>>
+
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const createItemStore = () => {
   const state = {
     repo: reactive<Repo>({}),

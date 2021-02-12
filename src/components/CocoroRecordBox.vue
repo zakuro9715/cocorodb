@@ -23,13 +23,13 @@ export default defineComponent({
     IonCardContent,
     RecordForm,
   },
-  emits: ['submit'],
   props: {
     record: {
       type: Object as PropType<Record>,
       required: true,
     },
   },
+  emits: ['submit'],
   methods: {
     submit(record: Record) {
       this.$emit('submit', record)

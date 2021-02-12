@@ -41,7 +41,7 @@ export class Record implements RecordData {
   createdAt: Date
 
 
-  get itemId() {
+  get itemId(): ID {
     return this.item.id
   }
 
