@@ -1,20 +1,21 @@
-import { computed, reactive } from 'vue'
+import { computed, reactive, ref } from 'vue'
 import { Item } from '@/models'
 import { records, db, ID, Saved, toSaved, RecordData } from '@/db'
 import { Repository } from './types'
 
-interface State {
-  repo: Repository<Saved<Item>>
-  ids: ID[]
-}
-
+type Repo = Repository<Saved<Item>>
 export const createItemStore = () => {
-  const state = reactive<State>({ repo: {}, ids: [] })
-  const list = state.ids.map((id) => state.repo[id])
+  const state = {
+    repo: reactive<Repo>({}),
+    ids: ref(Array<ID>()),
+  }
+  const list = computed(() => state.ids.value.map((id) => state.repo[id]))
 
   function pushItem(item: Saved<Item>): void {
     state.repo[item.id] = item
-    state.ids.push(item.id)
+    state.ids.value.push(item.id)
+    console.log('push', state.ids.value.map(v=>v))
+    console.log('push', list.value)
   }
 
   async function loadAll(): Promise<void> {
@@ -23,13 +24,9 @@ export const createItemStore = () => {
     list.forEach((v) => { pushItem(v) })
   }
 
-  const newEmptyRecords = (): Repository<RecordData> => Object.fromEntries(
-    list.map((v) => [v.id, records.new(v)])
-  )
-
   const getById = (id: ID) => state.repo[id]
 
-  const methods = { loadAll, getById, newEmptyRecords }
+  const methods = { loadAll, getById }
   const getters = { list }
   return { ...methods, ...getters }
 }

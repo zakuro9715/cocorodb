@@ -1,6 +1,7 @@
 <template>
   <ion-card>
     <ion-card-content>
+      {{ record.item.name }}
       <RecordForm
         :record="record"
         @submit="submit"

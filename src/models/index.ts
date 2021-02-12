@@ -1,5 +1,5 @@
 import { unwrap } from '@/utils'
-import { ID, Saved, ItemData, RecordData, RecordValueKind } from '@/db'
+import { ID, Saved, toSaved, ItemData, RecordData, RecordValueKind } from '@/db'
 
 export class Item implements ItemData {
   id?: ID
@@ -18,16 +18,16 @@ export class Item implements ItemData {
     this.max = v.max
   }
 
-  newRecordData(): RecordData {
-    return {
-      itemId: unwrap(this.id),
+  newRecord(): Record {
+    return new Record({
+      item: toSaved<Item>(this),
       valueKind: this.valueKind,
       min: this.min,
       max: this.max,
       createdAt: new Date(),
       value: 0,
       text: '',
-    }
+    })
   }
 }
 
