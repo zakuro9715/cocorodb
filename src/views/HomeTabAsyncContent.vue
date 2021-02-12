@@ -10,9 +10,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, computed, ref } from 'vue'
-import { records, prepare as prepareDB, RecordData } from '@/db'
-import { Record, Item } from '@/models'
+import { defineComponent, ref } from 'vue'
+import { prepare as prepareDB } from '@/db'
+import { Record } from '@/models'
 import { useGlobalStore } from '@/store'
 import { CocoroList, CocoroRecordBox } from '@/components'
 

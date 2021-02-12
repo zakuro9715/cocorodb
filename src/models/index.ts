@@ -1,4 +1,3 @@
-import { unwrap } from '@/utils'
 import { ID, Saved, toSaved, ItemData, RecordData, RecordValueKind } from '@/db'
 
 export class Item implements ItemData {

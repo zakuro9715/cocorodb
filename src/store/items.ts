@@ -1,6 +1,6 @@
 import { computed, reactive, ref } from 'vue'
 import { Item } from '@/models'
-import { records, db, ID, Saved, toSaved, RecordData } from '@/db'
+import { db, ID, Saved, toSaved } from '@/db'
 import { Repository } from './types'
 
 type Repo = Repository<Saved<Item>>
@@ -14,7 +14,7 @@ export const createItemStore = () => {
   function pushItem(item: Saved<Item>): void {
     state.repo[item.id] = item
     state.ids.value.push(item.id)
-    console.log('push', state.ids.value.map(v=>v))
+    console.log('push', state.ids.value.map((v) => v))
     console.log('push', list.value)
   }
 
